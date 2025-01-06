@@ -1,8 +1,9 @@
+import BoulderProblemDetail from '@/components/boulder/BoulderDetailPage'
 import React from 'react'
 
 const Page = () => {
   return (
-    <div>This is boulder page</div>
+    <BoulderProblemDetail />
   )
 }
 
