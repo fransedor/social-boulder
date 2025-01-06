@@ -1,54 +1,47 @@
 import React from "react";
-import { User, Tag } from "lucide-react";
 import { BoulderProblem } from "./types";
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../ui/card";
-import { Button } from "../ui/button";
-import { cn } from "@/lib/utils";
+import { Tag } from "./Tag";
+import { GradeLabel } from "./GradeLabel";
 
-interface BoulderCardProps {
+interface BoulderProblemCardProps {
   problem: BoulderProblem;
 }
 
-export function BoulderCard({ problem }: BoulderCardProps) {
+export function BoulderProblemCard({ problem }: BoulderProblemCardProps) {
   return (
-    <Card className="overflow-hidden transition-transform hover:scale-[1.02]">
-      <div className="relative h-48">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+      {/* Problem Image */}
+      <div className="relative h-96">
         <img
           src={problem.imageUrl}
-          alt={problem.name}
-          className="absolute inset-0 w-full h-full object-cover"
+          alt={`Boulder problem: ${problem.name}`}
+          className="w-full h-full object-cover"
+        />
+        <div
+          className="absolute bottom-0 left-0 right-0 h-1.5"
+          style={{ backgroundColor: problem.color }}
         />
       </div>
-      <CardHeader className="space-y-2">
-        <div className="flex justify-between items-start">
-          <CardTitle>{problem.name}</CardTitle>
-          <span className="px-2 py-1 bg-purple-100 text-purple-800 text-sm font-semibold rounded">
-            V{problem.grade}
-          </span>
+
+      <div className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-bold text-gray-900">{problem.name}</h3>
+          <GradeLabel grade={problem.grade} />
         </div>
-        <div className="flex items-center text-neutral-500 text-sm">
-          <User size={16} className="mr-1" />
-          <span>{problem.setter}</span>
-        </div>
-      </CardHeader>
-      <CardContent>
-        <p className="text-neutral-600 text-sm">{problem.description}</p>
-      </CardContent>
-      <CardFooter>
-        <div className="flex flex-wrap gap-2">
+
+        <p className="text-gray-600 mb-4">{problem.description}</p>
+
+        <div className="flex flex-wrap gap-2 mb-4">
           {problem.tags.map((tag) => (
-            <Button
-              key={tag}
-              variant="outline"
-              size="sm"
-              className={cn("h-7 text-xs", "bg-neutral-50 hover:bg-neutral-100")}
-            >
-              <Tag size={12} className="mr-1" />
-              {tag}
-            </Button>
+            <Tag key={tag} tag={tag} />
           ))}
         </div>
-      </CardFooter>
-    </Card>
+
+        <div className="flex items-center justify-between text-sm text-gray-500">
+          <span>Set by {problem.setter}</span>
+          <span>{new Date(problem.dateSet).toLocaleDateString()}</span>
+        </div>
+      </div>
+    </div>
   );
 }
