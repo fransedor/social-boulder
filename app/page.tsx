@@ -3,7 +3,7 @@ import { GymCard } from "@/components/home/GymCard";
 import { Navbar } from "@/components/home/Navbar";
 import { Gym } from "@/components/home/types";
 
-export const mockGyms = [
+const mockGyms = [
   {
     id: "1",
     name: "Boulder Zone",
