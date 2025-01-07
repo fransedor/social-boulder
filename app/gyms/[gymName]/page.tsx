@@ -34,12 +34,13 @@ const mockProblems: BoulderProblem[] = [
   },
 ];
 
-export default function Home() {
+export default function Page({ params } : { params: { gymName: string }}) {
+
   return (
     <main>
       <Navbar />
       <Hero />
-      <BoulderGrid problems={mockProblems} />
+      <BoulderGrid problems={mockProblems} gymSlug={params.gymName || ""} />
     </main>
   );
 }

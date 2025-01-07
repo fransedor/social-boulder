@@ -8,7 +8,7 @@ interface GymCardProps {
 
 export function GymCard({ gym }: GymCardProps) {
   return (
-    <Link href={`/gyms/${gym.id}`}>
+    <Link href={`/gyms/${gym.name}`}>
       <div className="relative h-96 rounded-lg overflow-hidden group">
         {/* Background Image */}
         <img src={gym.imageUrl} alt={gym.name} className="absolute w-full h-full object-cover" />

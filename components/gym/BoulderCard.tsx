@@ -4,11 +4,12 @@ import Link from "next/link";
 
 interface BoulderProblemCardProps {
   problem: BoulderProblem;
+  gymSlug: string;
 }
 
-export function BoulderProblemCard({ problem }: BoulderProblemCardProps) {
+export function BoulderProblemCard({ problem, gymSlug }: BoulderProblemCardProps) {
   return (
-    <Link href={`/gyms/someGymName/${problem.id}`}>
+    <Link href={`/gyms/${gymSlug}/${problem.id}`}>
       <div
         className={`bg-white relative max-w-[400px] aspect-3/4 shadow-md overflow-hidden  ${
           problem.status === "inactive" ? "opacity-90" : ""
@@ -26,12 +27,12 @@ export function BoulderProblemCard({ problem }: BoulderProblemCardProps) {
           <span className="font-bold text-xl">{problem.grade}</span>
         </div>
         <div className="absolute z-20 bottom-4 flex gap-2 justify-center left-0 text-white w-full">
-            {problem.tags.slice(0, 3).map((tag) => (
-              <React.Fragment key={tag}>
-                <span className="text-xs">{tag}</span>
-              </React.Fragment>
-            ))}
-          </div>
+          {problem.tags.slice(0, 3).map((tag) => (
+            <React.Fragment key={tag}>
+              <span className="text-xs">{tag}</span>
+            </React.Fragment>
+          ))}
+        </div>
       </div>
     </Link>
   );

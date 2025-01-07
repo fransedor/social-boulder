@@ -7,6 +7,7 @@ const mockGyms = [
   {
     id: "1",
     name: "Boulder Zone",
+    slug: "boulder-zone",
     distance: 1.2,
     address: "123 Climb Street, Boulder, CO",
     rating: 4.8,
@@ -18,6 +19,7 @@ const mockGyms = [
   {
     id: "2",
     name: "Peak Performance",
+    slug: "peak-performance",
     distance: 2.5,
     address: "456 Mountain Ave, Boulder, CO",
     rating: 4.6,
@@ -29,6 +31,7 @@ const mockGyms = [
   {
     id: "3",
     name: "Gravity Lab",
+    slug: "gravity-lab",
     distance: 3.1,
     address: "789 Summit Road, Boulder, CO",
     rating: 4.9,
