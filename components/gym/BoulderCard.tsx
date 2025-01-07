@@ -1,9 +1,5 @@
 import React from "react";
 import { BoulderProblem } from "./types";
-import { Tag } from "./Tag";
-import { GradeLabel } from "./GradeLabel";
-import { ProblemImage } from "./BoulderImage";
-import { ProblemStatus } from "./BoulderStatus";
 import Link from "next/link";
 
 interface BoulderProblemCardProps {
@@ -14,37 +10,28 @@ export function BoulderProblemCard({ problem }: BoulderProblemCardProps) {
   return (
     <Link href={`/gyms/someGymName/${problem.id}`}>
       <div
-        className={`bg-white rounded-lg shadow-md overflow-hidden ${
+        className={`bg-white relative max-w-[400px] aspect-3/4 shadow-md overflow-hidden  ${
           problem.status === "inactive" ? "opacity-90" : ""
         }`}
       >
-        <ProblemImage
-          imageUrl={problem.imageUrl}
-          name={problem.name}
-          color={problem.color}
-          status={problem.status}
+        <div className="w-full h-full bg-black top-0 left-0 absolute z-10 opacity-70 hover:opacity-40"></div>
+        <img
+          src={problem.imageUrl}
+          alt={`Boulder problem: ${problem.name}`}
+          className={`w-full h-full object-cover `}
         />
 
-        <div className="p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-lg font-bold text-gray-900">{problem.name}</h3>
-            <GradeLabel grade={problem.grade} />
-          </div>
-
-          <p className="text-gray-600 mb-4">{problem.description}</p>
-
-          <div className="flex flex-wrap gap-2 mb-4">
-            {problem.tags.map((tag) => (
-              <Tag key={tag} tag={tag} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 text-center flex flex-col gap-4 text-white">
+          <h3 className="font-extrabold text-white text-3xl">{problem.name}</h3>
+          <span className="font-bold text-xl">{problem.grade}</span>
+        </div>
+        <div className="absolute z-20 bottom-4 flex gap-2 justify-center left-0 text-white w-full">
+            {problem.tags.slice(0, 3).map((tag) => (
+              <React.Fragment key={tag}>
+                <span className="text-xs">{tag}</span>
+              </React.Fragment>
             ))}
           </div>
-
-          <div className="flex items-center justify-between text-sm text-gray-500 mb-4">
-            <span>Set by {problem.setter}</span>
-          </div>
-
-          <ProblemStatus status={problem.status} dateSet={problem.dateSet} />
-        </div>
       </div>
     </Link>
   );

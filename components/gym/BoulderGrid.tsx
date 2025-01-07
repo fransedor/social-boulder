@@ -8,9 +8,9 @@ interface BoulderGridProps {
 
 export function BoulderGrid({ problems }: BoulderGridProps) {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto mb-16">
       <h2 className="text-4xl font-semibold py-4">Problems available</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="flex flex-wrap gap-5">
         {problems.map((problem) => (
           <BoulderProblemCard key={problem.id} problem={problem} />
         ))}
